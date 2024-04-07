@@ -12,17 +12,17 @@ types.setTypeParser(1114, function(stringValue) {
 });
 
 const databaseConfig = {
-    'host': 'localhost',
+    /*'host': 'localhost',
     'port': 5433,
     'database': 'franklin_quevedo',
     'user': 'postgres',
     'password': '12345'
-
-    /*  'host': 'ec2-54-91-223-99.compute-1.amazonaws.com',
+*/
+      'host': 'cb4l59cdg4fg1k.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com',
       'port': 5432,
-      'database': 'da5ep84bba9tj8',
-      'user': 'lgfsqqkvqjzrrd',
-      'password': 'fbcdee880d1fac7cd23cb79eb19ffe0d1e0c6c13645e14f5557dd5a97ce759b8', 
+      'database': 'd9amegu3taci9b',
+      'user': 'uekcp4knocn67k',
+      'password': 'pe09eef409e0d26397fb2cecf7f61ce800d64e76b125c85a0ff2dbc3309bb9d48', 
        ssl: true,
        dialect: 'postgres',
       dialectOptions: {
@@ -31,7 +31,7 @@ const databaseConfig = {
 
       rejectUnauthorized: false,
         requestCert: true,
-        agent: false   */
+        agent: false   
 
 
 };
