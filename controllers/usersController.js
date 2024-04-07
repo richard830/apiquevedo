@@ -4,7 +4,7 @@ const keys = require('../config/keys');
 const crypto = require('crypto');
 const nodemailer = require("nodemailer");
 const fs = require('fs')
-
+const Rol = require('../models/rol');
 
 
 
