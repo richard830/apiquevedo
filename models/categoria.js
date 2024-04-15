@@ -4,7 +4,7 @@ const Categoria = {};
 
 
 
-Categoria.subirCategoria = (categoria, image) => {
+Categoria.subirCategoria = (categoria) => {
 
     const sql = `
     INSERT INTO categoria (nombre, image, fecha_categoria)
@@ -12,7 +12,7 @@ Categoria.subirCategoria = (categoria, image) => {
     RETURNING *`;
     return db.oneOrNone(sql, [
         categoria.nombre,
-        image.filename,
+        categoria.image,
         new Date()
     ]);
 }
@@ -30,12 +30,22 @@ Categoria.listarCategoriaLimite = () => {
     return db.manyOrNone(sql);
 };
 
-
-
-Categoria.verificarExisteNombreCategoria = (nombre) => {
-    const sql = `SELECT * FROM categoria where nombre = $1;`;
-    return db.manyOrNone(sql, nombre);
+Categoria.verificarExisteNombreCategoria = async(nombre) => {
+    try {
+        const sql = `SELECT * FROM categoria where nombre = $1;`;
+        const result = await db.manyOrNone(sql, nombre);
+        return result.length > 0; // Devuelve true si hay al menos un resultado, lo que significa que el nombre ya existe
+    } catch (error) {
+        console.error('Error al verificar si la categoría ya existe:', error);
+        throw error; // Propaga el error para que pueda ser manejado por el controlador
+    }
 };
+
+
+// Categoria.verificarExisteNombreCategoria = (nombre) => {
+//     const sql = `SELECT * FROM categoria where nombre = $1;`;
+//     return db.manyOrNone(sql, nombre);
+// };
 
 
 
