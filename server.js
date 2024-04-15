@@ -69,7 +69,7 @@ const imagePro = require('./routes/image_pro_Routes');
 
 
 
-//const g = process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+const g = process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 const port = process.env.PORT || 3000;
 
@@ -85,7 +85,7 @@ require('./config/passport')(passport);
 
 app.disable('x-powered-by');
 
-app.set('port', port,  /*g */ );
+app.set('port', port,  g  );
 
 
 // orderDeliverySokert(io);
