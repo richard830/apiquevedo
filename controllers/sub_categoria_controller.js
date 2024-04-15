@@ -11,7 +11,7 @@ module.exports = {
             const nombre_sub = req.body.nombre_sub;
             const myuser = await SubCategoria.verificarExisteNombreSubCategoria(nombre_sub);
 
-            if (!myuser) {
+            if (myuser) {
                 
             
             data = await SubCategoria.subirSubCategoria(datos, image);
