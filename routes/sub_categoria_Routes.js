@@ -8,6 +8,7 @@ module.exports = (app, subirImagen) => {
 
     app.post('/api/sub_categoria/subir_subcategoria', subirImagen.single('image_sub'), SubCategoriaController.subirSubCategoriaController);
     app.get('/api/sub_categoria/listarsubCategoria', SubCategoriaController.listarSubCategoria);
+    app.get('/api/sub_categoria/listarsubCategoriaxID/:id_categoria', SubCategoriaController.listarSubCategoriaxID);
 
 
 }
