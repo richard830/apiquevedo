@@ -64,7 +64,7 @@ module.exports = {
             const listas = lista.map(producto => {
                 return {
                     nombre_sub: producto.nombre_sub,
-                    image_sub: `http://192.168.0.100:3000/uploads/${producto.image_sub}`,
+                    image_sub: `https://apibacke-c332a15fe19e.herokuapp.com/uploads/${producto.image_sub}`,
                     id_categoria: producto.id_categoria,
                     id_sub: producto.id_sub,
 
