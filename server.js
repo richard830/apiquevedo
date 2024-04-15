@@ -27,30 +27,8 @@ const upload = multer({
 
 
 
-const storageImage = multer.diskStorage({
-    destination: function(req, file, cb) {
-        cb(null, 'uploads/');
-    },
-    filename: function(req, file, cb) {
-        const ext = file.originalname.split('.').pop()
-        cb(null, `${uuid.v4()}.${ext}`);
-    }
-});
 
-const subirImagen = multer({
-    storage: storageImage
-
-});
-
-
-const subirImagenTRES = multer({
-    storage: storageImage,
-    limits: {
-        files: 3 // Número máximo de archivos (en tu caso, 3 imágenes)
-    }
-});
-
-app.use('/uploads', express.static('./uploads'));
+//app.use('/uploads', express.static('./uploads'));
 
 
 
@@ -93,11 +71,11 @@ app.set('port', port,  g  );
 
 //LLAMANDO A LAS RUTAS
 
-users(app, subirImagen);
-categoria(app, subirImagen);
-subcategoria(app, subirImagen);
+users(app, upload);
+categoria(app, upload);
+subcategoria(app, upload);
 producto(app);
-imagePro(app, subirImagen);
+imagePro(app, upload);
 
 
 
