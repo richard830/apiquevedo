@@ -6,11 +6,11 @@ const { v4: uuidv4 } = require('uuid');
 const uuid = uuidv4();
 
 const storage = new Storage({
-    projectId: "maxcits-9a807",
+    projectId: "appturismo-14ec5",
     keyFilename: './serviceAccountKey.json'
 });
 
-const bucket = storage.bucket("gs://maxcits-9a807.appspot.com/");
+const bucket = storage.bucket("gs://appturismo-14ec5.appspot.com/");
 
 
 
