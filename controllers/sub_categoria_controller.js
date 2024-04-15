@@ -11,13 +11,9 @@ module.exports = {
             const nombre_sub = req.body.nombre_sub;
             const myuser = await SubCategoria.verificarExisteNombreSubCategoria(nombre_sub);
 
-            if (myuser) {
-                return res.status(401).json({
-                    success: false,
-                    message: 'La SubCategoria ya existe'
-                });
-
-            }
+            if (!myuser) {
+                
+            
             data = await SubCategoria.subirSubCategoria(datos, image);
             console.log(data);
             return res.status(201).json({
@@ -25,6 +21,14 @@ module.exports = {
                 message: 'SubCategoria Creada con exito',
                 data
             })
+
+        }else {
+            // Ya existe una categoría con ese nombre
+            return res.status(401).json({
+                success: false,
+                message: 'La SubCategoría ya existe'
+            });
+        }
         } catch (error) {
             console.log(`Error: ${error}`)
             return res.status(501).json({
