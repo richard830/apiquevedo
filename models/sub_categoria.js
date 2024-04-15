@@ -33,9 +33,6 @@ SubCategoria.listarSubCategoriaID = (id_categoria) => {
 
 SubCategoria.verificarExisteNombreSubCategoria = (nombre) => {
     const sql = `SELECT * FROM subcategoria where nombre_sub = $1;`;
-    
-    
- 
     return db.manyOrNone(sql, nombre);
 };
 
