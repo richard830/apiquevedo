@@ -9,15 +9,15 @@ module.exports = {
             const image = req.file;
             const datos = req.body;
             const nombre = req.body.nombre;
-            const myuser = await Categoria.verificarExisteNombreCategoria(nombre);
+           // const myuser = await Categoria.verificarExisteNombreCategoria(nombre);
 
-            if (myuser) {
-                return res.status(401).json({
-                    success: false,
-                    message: 'La Categoria ya existe'
-                });
+           // if (myuser) {
+            //    return res.status(401).json({
+            //        success: false,
+            //        message: 'La Categoria ya existe'
+            //    });
 
-            }
+            //}
 
             data = await Categoria.subirCategoria(datos, image);
             console.log(data);
