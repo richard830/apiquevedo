@@ -1,15 +1,23 @@
 const ImagePro = require('../models/image_pro');
-
+const storage = require('../utils/cloud_storage');
 
 
 module.exports = {
 
     async subirImageController(req, res, next) {
         try {
-            const image = req.file;
-            const datos = req.body;
+            const dato = JSON.parse(req.body.image_pro)
+            const file = req.files;
 
-            data = await ImagePro.subirImagePro(datos, image);
+            if (file.length > 0) {
+                const pathImage = `imagesub_${Date.now()}`;
+                const url = await storage(file[0], pathImage);
+                if (url != undefined && url != null) {
+                    dato.image_pro = url;
+
+                }
+            }
+            data = await ImagePro.subirImagePro(dato);
             console.log(data);
             return res.status(201).json({
                 success: true,
