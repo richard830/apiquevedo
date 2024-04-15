@@ -1,25 +1,35 @@
 const Categoria = require('../models/categoria');
-
+const storage = require('../utils/cloud_storage');
 
 
 module.exports = {
 
     async subirCategoriaController(req, res, next) {
         try {
-            const image = req.file;
-            const datos = req.body;
-            const nombre = req.body.nombre;
-           // const myuser = await Categoria.verificarExisteNombreCategoria(nombre);
+            const dato = JSON.parse(req.body.image)
+            const file = req.files;
+            const myuser = await Categoria.verificarExisteNombreCategoria(dato.nombre);
 
-           // if (myuser) {
-            //    return res.status(401).json({
-            //        success: false,
-            //        message: 'La Categoria ya existe'
-            //    });
+            if (myuser) {
+                return res.status(401).json({
+                    success: false,
+                    message: 'La Categoria ya existe'
+                });
 
-            //}
+            }
 
-            data = await Categoria.subirCategoria(datos, image);
+            if (file.length > 0) {
+                const pathImage = `image_${Date.now()}`;
+                const url = await storage(file[0], pathImage);
+                if (url != undefined && url != null) {
+                    console.log(url)
+                    dato.image = url;
+
+                }
+            }
+
+
+            data = await Categoria.subirCategoria(dato);
             console.log(data);
             return res.status(201).json({
                 success: true,
