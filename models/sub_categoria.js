@@ -26,6 +26,15 @@ SubCategoria.listarSubCategoria = () => {
 };
 
 
+SubCategoria.listarSubCategoriaID = (id_categoria) => {
+    const sql = `select * from subcategoria WHERE id_categoria = $1 order by fecha_sub desc`;
+    return db.manyOrNone(sql, id_categoria);
+};
+
+SubCategoria.verificarExisteNombreSubCategoria = (nombre) => {
+    const sql = `SELECT * FROM subcategoria where nombre_sub = $1;`;
+    return db.manyOrNone(sql, nombre);
+};
 
 
 module.exports = SubCategoria;
