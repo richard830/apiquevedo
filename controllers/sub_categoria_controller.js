@@ -8,18 +8,18 @@ module.exports = {
         try {
             const image = req.file;
             const datos = req.body;
-            const nombre_sub = req.body.nombre_sub;
-            const myuser = await SubCategoria.verificarExisteNombreSubCategoria(nombre_sub);
+           // const nombre_sub = req.body.nombre_sub;
+          //  const myuser = await SubCategoria.verificarExisteNombreSubCategoria(nombre_sub);
 
-            if (myuser) {
-                return res.status(401).json({
-                success: false,
-                message: 'La SubCategoría ya existe'
-            }); 
+            //if (myuser) {
+             //   return res.status(401).json({
+              //  success: false,
+             //   message: 'La SubCategoría ya existe'
+            //}); 
             
            
 
-        }
+                //}
 
              data = await SubCategoria.subirSubCategoria(datos, image);
             console.log(data);
