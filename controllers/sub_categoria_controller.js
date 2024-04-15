@@ -1,27 +1,32 @@
 const SubCategoria = require('../models/sub_categoria');
 
-
+const storage = require('../utils/cloud_storage');
 
 module.exports = {
 
     async subirSubCategoriaController(req, res, next) {
         try {
-            const image = req.file;
-            const datos = req.body;
-           // const nombre_sub = req.body.nombre_sub;
-          //  const myuser = await SubCategoria.verificarExisteNombreSubCategoria(nombre_sub);
+            const dato = JSON.parse(req.body.image_sub)
+            const file = req.files;
+            const myuser = await SubCategoria.verificarExisteNombreSubCategoria(dato.nombre_sub);
 
-            //if (myuser) {
-             //   return res.status(401).json({
-              //  success: false,
-             //   message: 'La SubCategoría ya existe'
-            //}); 
-            
-           
+            if (myuser) {
+                return res.status(401).json({
+                    success: false,
+                    message: 'La SubCategoria ya existe'
+                });
 
-                //}
+            }
 
-             data = await SubCategoria.subirSubCategoria(datos, image);
+            if (file.length > 0) {
+                const pathImage = `imagesub_${Date.now()}`;
+                const url = await storage(file[0], pathImage);
+                if (url != undefined && url != null) {
+                    dato.image_sub = url;
+
+                }
+            }
+            data = await SubCategoria.subirSubCategoria(dato);
             console.log(data);
             return res.status(201).json({
                 success: true,
@@ -67,7 +72,7 @@ module.exports = {
             const listas = lista.map(producto => {
                 return {
                     nombre_sub: producto.nombre_sub,
-                    image_sub: `https://apibacke-c332a15fe19e.herokuapp.com/uploads/${producto.image_sub}`,
+                    image_sub: producto.image_sub,
                     id_categoria: producto.id_categoria,
                     id_sub: producto.id_sub,
 
