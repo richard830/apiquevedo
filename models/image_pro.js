@@ -4,7 +4,7 @@ const ImagePro = {};
 
 
 
-ImagePro.subirImagePro = (producto, image) => {
+ImagePro.subirImagePro = (producto) => {
 
     const sql = `
     INSERT INTO image_producto (
@@ -15,7 +15,7 @@ ImagePro.subirImagePro = (producto, image) => {
     VALUES ($1, $2, $3)
     RETURNING *`;
     return db.oneOrNone(sql, [
-        image.filename,
+        producto.image_pro,
         producto.id_pro,
         new Date()
     ]);
