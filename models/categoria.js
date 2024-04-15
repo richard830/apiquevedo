@@ -25,6 +25,19 @@ Categoria.listarCategoria = () => {
 };
 
 
+Categoria.listarCategoriaLimite = () => {
+    const sql = `SELECT * FROM categoria ORDER BY fecha_categoria DESC LIMIT 5;`;
+    return db.manyOrNone(sql);
+};
+
+
+
+Categoria.verificarExisteNombreCategoria = (nombre) => {
+    const sql = `SELECT * FROM categoria where nombre = $1;`;
+    return db.manyOrNone(sql, nombre);
+};
+
+
 
 
 module.exports = Categoria;
